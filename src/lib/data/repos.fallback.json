@@ -1,0 +1,191 @@
+[
+	{
+		"name": "TheRealNightmare",
+		"description": null,
+		"language": "Python",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/TheRealNightmare",
+		"homepage": null,
+		"pushed_at": "2026-09-12T11:33:54Z"
+	},
+	{
+		"name": "PlayerKoi",
+		"description": null,
+		"language": "Python",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/PlayerKoi",
+		"homepage": null,
+		"pushed_at": "2026-09-11T11:08:45Z"
+	},
+	{
+		"name": "Portfolio",
+		"description": "my portfolio",
+		"language": "TypeScript",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/Portfolio",
+		"homepage": null,
+		"pushed_at": "2026-09-10T05:18:56Z"
+	},
+	{
+		"name": "micrograd",
+		"description": "A tiny scalar-valued autograd engine and a neural net library on top of it with PyTorch-like API.",
+		"language": "Jupyter Notebook",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/micrograd",
+		"homepage": null,
+		"pushed_at": "2026-08-14T11:17:34Z"
+	},
+	{
+		"name": "ScrollSense",
+		"description": null,
+		"language": "JavaScript",
+		"stargazers_count": 2,
+		"html_url": "https://github.com/TheRealNightmare/ScrollSense",
+		"homepage": null,
+		"pushed_at": "2026-06-16T15:37:28Z"
+	},
+	{
+		"name": "Verso2.0",
+		"description": "Verso is a comprehensive book management and social platform that allows users to discover books, manage personal libraries, and engage with a reading community.",
+		"language": "PHP",
+		"stargazers_count": 2,
+		"html_url": "https://github.com/TheRealNightmare/Verso2.0",
+		"homepage": null,
+		"pushed_at": "2026-06-12T19:20:37Z"
+	},
+	{
+		"name": "ChessBot-V1",
+		"description": "This repository is for sharing the designs of the ChessBot V1 project",
+		"language": null,
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/ChessBot-V1",
+		"homepage": null,
+		"pushed_at": "2026-04-19T16:06:44Z"
+	},
+	{
+		"name": "RayTracing",
+		"description": "A small 2D light-and-shadow simulation written in C with SDL2. A glowing circle emits rays in every direction; a second circle drifts up and down across the scene and blocks the rays that hit it, carving out a moving shadow. Drag with the mouse to move the light source around.",
+		"language": "C",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/RayTracing",
+		"homepage": null,
+		"pushed_at": "2026-09-14T09:52:23Z"
+	},
+	{
+		"name": "WebProject",
+		"description": null,
+		"language": "Blade",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/WebProject",
+		"homepage": null,
+		"pushed_at": "2026-01-24T02:57:48Z"
+	},
+	{
+		"name": "PokemonTrainer",
+		"description": null,
+		"language": "HTML",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/PokemonTrainer",
+		"homepage": null,
+		"pushed_at": "2026-01-07T05:42:37Z"
+	},
+	{
+		"name": "TheRealNightmare.github.io",
+		"description": null,
+		"language": "HTML",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/TheRealNightmare.github.io",
+		"homepage": null,
+		"pushed_at": "2026-01-03T14:38:46Z"
+	},
+	{
+		"name": "PytorchProjects",
+		"description": null,
+		"language": "Jupyter Notebook",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/PytorchProjects",
+		"homepage": null,
+		"pushed_at": "2026-01-02T13:41:18Z"
+	},
+	{
+		"name": "TestCI-CD",
+		"description": null,
+		"language": null,
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/TestCI-CD",
+		"homepage": null,
+		"pushed_at": "2025-11-13T11:46:06Z"
+	},
+	{
+		"name": "Laravel-Microservice",
+		"description": "made this project to understand the microservice architecture",
+		"language": "Blade",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/Laravel-Microservice",
+		"homepage": null,
+		"pushed_at": "2025-11-02T07:45:55Z"
+	},
+	{
+		"name": "TwT",
+		"description": "making just for fun",
+		"language": "TypeScript",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/TwT",
+		"homepage": null,
+		"pushed_at": "2025-09-22T10:31:59Z"
+	},
+	{
+		"name": "smallProjects",
+		"description": null,
+		"language": "C",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/smallProjects",
+		"homepage": null,
+		"pushed_at": "2025-01-03T10:53:34Z"
+	},
+	{
+		"name": "Intro-to-machine-learning-with-python",
+		"description": "following a book",
+		"language": "Jupyter Notebook",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/Intro-to-machine-learning-with-python",
+		"homepage": null,
+		"pushed_at": "2024-09-15T11:32:28Z"
+	},
+	{
+		"name": "MachineLearningProjects",
+		"description": "some projects that I have been building by the help of tutorial",
+		"language": "Jupyter Notebook",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/MachineLearningProjects",
+		"homepage": null,
+		"pushed_at": "2024-09-09T06:36:58Z"
+	},
+	{
+		"name": "Spotuber",
+		"description": "It is a python program which will take spotify playlist id and download those playlist's song from youtube.",
+		"language": "Python",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/Spotuber",
+		"homepage": null,
+		"pushed_at": "2024-05-05T15:16:43Z"
+	},
+	{
+		"name": "Vital-bot",
+		"description": "It is a music bot for now. I will gradually upgrade it.",
+		"language": "Python",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/Vital-bot",
+		"homepage": null,
+		"pushed_at": "2024-05-05T15:15:45Z"
+	},
+	{
+		"name": "public-apis",
+		"description": "A collective list of free APIs",
+		"language": null,
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/public-apis",
+		"homepage": "",
+		"pushed_at": "2021-10-08T09:42:58Z"
+	}
+]

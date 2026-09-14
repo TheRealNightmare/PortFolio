@@ -1,0 +1,8 @@
+{
+	// Cloudflare Pages, direct upload. `npm run deploy` builds the static site
+	// and uploads ./build straight to this project — no Git connection needed.
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "mirazulislamnahid",
+	"compatibility_date": "2026-09-14",
+	"pages_build_output_dir": "build"
+}

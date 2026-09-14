@@ -1,0 +1,9 @@
+# SvelteKit fingerprints everything under /_app/immutable, so it can be cached forever.
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Everything else: let the browser revalidate so a redeploy is picked up immediately.
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

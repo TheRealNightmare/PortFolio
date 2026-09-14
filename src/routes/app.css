@@ -1,0 +1,114 @@
+/*
+ * Project-level styles layered on top of neo-retro.
+ * Registry files under src/lib/components/ui/ stay untouched — everything here
+ * either sets a token the system leaves undefined (fonts) or adds a decoration
+ * built from tokens the system already owns (borders, shadows, palette colors).
+ */
+
+@theme {
+	--font-display: 'Archivo Black', 'Arial Black', system-ui, sans-serif;
+	--font-sans: 'Space Grotesk Variable', system-ui, -apple-system, sans-serif;
+	--font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+}
+
+@layer base {
+	body {
+		font-family: var(--font-sans);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-display);
+		letter-spacing: -0.03em;
+	}
+
+	code,
+	kbd,
+	pre,
+	samp {
+		font-family: var(--font-mono);
+	}
+}
+
+/*
+ * Sticker cards: the fix for "uniform grid of boxes". Cards sit at small
+ * alternating angles and snap straight with a deeper shadow on hover/focus.
+ */
+@utility sticker {
+	transition:
+		transform 150ms ease-out,
+		box-shadow 150ms ease-out;
+}
+
+@layer components {
+	.sticker-grid > *:nth-child(odd) .sticker,
+	.sticker-grid > .sticker:nth-child(odd) {
+		transform: rotate(-1.25deg);
+	}
+
+	.sticker-grid > *:nth-child(even) .sticker,
+	.sticker-grid > .sticker:nth-child(even) {
+		transform: rotate(1.25deg);
+	}
+
+	/*
+	 * Wide cards swing a long way vertically at the same angle and would push
+	 * past the content column, so they stay straight and rely on the hover pop.
+	 */
+	.sticker-grid > .sticker-flat,
+	.sticker-grid > *:nth-child(odd) .sticker-flat,
+	.sticker-grid > *:nth-child(even) .sticker-flat,
+	.arcade .sticker-grid > .sticker-flat {
+		transform: none;
+	}
+
+	.sticker:hover,
+	.sticker:focus-within {
+		transform: rotate(0deg) translate(-2px, -2px) !important;
+		box-shadow: 8px 8px 0 0 var(--color-border);
+	}
+
+	/* Konami mode: everything leans a little harder. */
+	.arcade .sticker-grid > *:nth-child(odd) .sticker,
+	.arcade .sticker-grid > .sticker:nth-child(odd) {
+		transform: rotate(-3.5deg);
+	}
+
+	.arcade .sticker-grid > *:nth-child(even) .sticker,
+	.arcade .sticker-grid > .sticker:nth-child(even) {
+		transform: rotate(3.5deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sticker {
+		transition: none;
+	}
+}
+
+/* Hero letters: staggered entrance, applied only after hydration. */
+@keyframes letter-drop {
+	from {
+		opacity: 0;
+		transform: translateY(-0.35em) rotate(-8deg);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) rotate(0deg);
+	}
+}
+
+.intro .hero-letter {
+	animation: letter-drop 420ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+	animation-delay: calc(var(--i) * 45ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.intro .hero-letter {
+		animation: none;
+	}
+}

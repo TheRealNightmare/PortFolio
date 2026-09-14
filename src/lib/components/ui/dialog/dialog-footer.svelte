@@ -1,0 +1,35 @@
+<script lang="ts">
+  import { Dialog as DialogPrimitive } from 'bits-ui';
+  import type { HTMLAttributes } from 'svelte/elements';
+
+  import { Button } from '$lib/components/ui/button/index.ts';
+  import { cn, type Color, type WithElementRef } from '$lib/utils.ts';
+
+  let {
+    ref = $bindable(null),
+    class: className,
+    showCloseButton = true,
+    closeColor = 'red',
+    children,
+    ...restProps
+  }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+    showCloseButton?: boolean;
+    closeColor?: Color;
+  } = $props();
+</script>
+
+<div
+  bind:this={ref}
+  data-slot="dialog-footer"
+  class={cn('gap-2 sm:flex-row sm:justify-end flex flex-col', className)}
+  {...restProps}
+>
+  {#if showCloseButton}
+    <DialogPrimitive.Close>
+      {#snippet child({ props })}
+        <Button {...props} color={closeColor} class="sm:w-auto w-full">Cancel</Button>
+      {/snippet}
+    </DialogPrimitive.Close>
+  {/if}
+  {@render children?.()}
+</div>
