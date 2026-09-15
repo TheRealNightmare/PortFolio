@@ -1,9 +1,9 @@
 ---
-title: From Localhost to Production — Building a Robust CI/CD Pipeline for Nuxt.js on AWS EC2
+title: From Localhost to Production Building a Robust CI/CD Pipeline for Nuxt.js on AWS EC2
 date: 2025-12-04
-summary: How I built a push-to-deploy pipeline for a Nuxt.js app with GitHub Actions, S3, CodeDeploy and EC2 — and the two errors that cost me the most time.
+summary: How I built a push-to-deploy pipeline for a Nuxt.js app with GitHub Actions, S3, CodeDeploy and EC2 and the two errors that cost me the most time.
 cover: /blog-cicd.webp
-coverAlt: CI/CD pipeline architecture — GitHub Actions to S3 to CodeDeploy to EC2
+coverAlt: CI/CD pipeline architecture GitHub Actions to S3 to CodeDeploy to EC2
 tags: [nuxt, aws, ci-cd, devops]
 draft: false
 ---
@@ -60,7 +60,7 @@ pushes to the main branch.
 
 ### The Challenge: Subdirectories
 
-My project wasn't in the root of the repo — it was inside a `demo` folder. This caused immediate
+My project wasn't in the root of the repo it was inside a `demo` folder. This caused immediate
 issues with my initial build scripts. The standard `npm install` commands failed because they
 couldn't find `package.json`.
 
@@ -123,13 +123,13 @@ It wasn't smooth sailing on the first run. Here are two specific errors I encoun
 ### 2. The Silent PM2 Crash (503 Gateway)
 
 - **Error:** The deployment succeeded, but the site showed a "503 Service Unavailable".
-- **Diagnosis:** I SSH'd into the server and ran `pm2 list`. The process list was empty — the app had started and immediately died. Running `pm2 logs` revealed a missing environment variable.
+- **Diagnosis:** I SSH'd into the server and ran `pm2 list`. The process list was empty the app had started and immediately died. Running `pm2 logs` revealed a missing environment variable.
 - **Fix:** I updated the SSM Parameter Store permissions policy attached to the EC2 role allowing the server to actually read the secrets it was trying to fetch.
 
 ## Conclusion
 
 Building this pipeline bridged the gap between code and infrastructure. Now when I push a commit
-a complex series of events — building, zipping, uploading, stopping, configuring and restarting —
+a complex series of events building, zipping, uploading, stopping, configuring and restarting
 happens automatically in under 2 minutes.
 
 This project reinforced the importance of immutable artifacts (zipping the build) and role-based

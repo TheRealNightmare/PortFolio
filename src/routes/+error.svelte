@@ -24,9 +24,7 @@
 <Band color="red" size="lg">
 	<p class="mb-4 font-mono text-xs font-bold tracking-[0.3em] uppercase">Error</p>
 
-	<h1
-		class="font-display mb-6 text-[clamp(5rem,26vw,14rem)] leading-[0.8] tracking-tighter [text-shadow:6px_6px_0_var(--color-border)]"
-	>
+	<h1 class="font-display mb-6 text-[clamp(5rem,26vw,14rem)] leading-[0.8] tracking-tighter">
 		{#each String(page.status).split('') as digit, i (i)}
 			<span class="inline-block {digitColors[i % digitColors.length]}">{digit}</span>
 		{/each}

@@ -73,7 +73,7 @@
 			     full-size one in the right-hand column takes over from lg up. -->
 			<div class="mb-6 flex items-center gap-4">
 				<h1
-					class="font-display text-[clamp(2.25rem,9vw,5.25rem)] leading-[0.95] tracking-tight uppercase [text-shadow:4px_4px_0_var(--color-border)]"
+					class="font-display text-[clamp(2.25rem,9vw,5.25rem)] leading-[0.95] tracking-tight uppercase"
 				>
 					{#each nameLines as line, l (line)}
 						<span class="block">

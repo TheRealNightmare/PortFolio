@@ -45,7 +45,7 @@
 		</Button>
 
 		<h1
-			class="font-display mb-4 text-[clamp(1.9rem,6vw,3.75rem)] leading-[0.95] tracking-tighter uppercase [text-shadow:3px_3px_0_var(--color-border)]"
+			class="font-display mb-4 text-[clamp(1.9rem,6vw,3.75rem)] leading-[0.95] tracking-tighter uppercase"
 		>
 			{data.post.title}
 		</h1>
@@ -128,7 +128,6 @@
 	.post-body :global(h2) {
 		text-transform: uppercase;
 		letter-spacing: -0.03em;
-		text-shadow: 2px 2px 0 var(--color-border);
 	}
 
 	.post-body :global(ul) {

@@ -35,7 +35,6 @@
 		this={`h${level}`}
 		class={cn(
 			'font-display mt-0 mb-0 leading-[0.95] tracking-tighter uppercase',
-			'[text-shadow:3px_3px_0_var(--color-border)]',
 			sizes[level],
 			className
 		)}
