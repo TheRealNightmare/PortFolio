@@ -35,8 +35,15 @@
 	</div>
 
 	<div class="mt-8 flex flex-wrap gap-3">
-		<!-- Drop your PDF at static/cv.pdf to replace the placeholder. -->
-		<Button href="/cv.pdf" color="yellow" size="lg" download class="font-display uppercase">
+		<!-- `download` needs an explicit filename string: the bare shorthand is a Svelte
+		     prop, so it reaches the <a> as download="true" and saves as true.pdf. -->
+		<Button
+			href="/Mirazul_Islam_CV.pdf"
+			color="yellow"
+			size="lg"
+			download="Mirazul_Islam_CV.pdf"
+			class="font-display uppercase"
+		>
 			<DownloadIcon />Grab the CV
 		</Button>
 		{#each socials as link (link.href)}
@@ -44,8 +51,8 @@
 				href={link.href}
 				color="white"
 				size="lg"
-				target="_blank"
-				rel="noreferrer"
+				target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+				rel={link.href.startsWith('mailto:') ? undefined : 'noreferrer'}
 				class="font-display uppercase"
 			>
 				{link.label}
@@ -58,7 +65,7 @@
 <Band>
 	{#each timeline as group, gi (group.heading)}
 		<div class:mt-16={gi > 0}>
-			<SectionTitle kicker={`0${gi + 1} — history`}>{group.heading}</SectionTitle>
+			<SectionTitle kicker={`0${gi + 1} / history`}>{group.heading}</SectionTitle>
 
 			<ol class="mt-8 space-y-8 border-l-4 border-border pl-6 sm:pl-8">
 				{#each group.entries as entry (entry.title + entry.org)}
@@ -95,7 +102,7 @@
 
 <!-- SKILLS -->
 <Band color="blue">
-	<SectionTitle kicker="03 — the toolbox">What I reach for</SectionTitle>
+	<SectionTitle kicker="03 / the toolbox">What I reach for</SectionTitle>
 	<div class="sticker-grid mt-8 grid gap-6 sm:grid-cols-2">
 		{#each skills as group (group.group)}
 			<Card.Root color={group.color} class="sticker">
@@ -116,9 +123,10 @@
 
 <!-- CONTACT -->
 <Band color="yellow" edge={false} size="lg">
-	<SectionTitle kicker="04 — say hi">Still reading?</SectionTitle>
+	<SectionTitle kicker="04 / say hi">Still reading?</SectionTitle>
 	<p class="mt-4 max-w-xl text-base font-bold">
-		Then you probably want to talk. I'm open to interesting work — pick a link, I read all of them.
+		Then you probably want to talk. I'm open to interesting work, so pick a link. I read all of
+		them.
 	</p>
 	<div class="mt-8 flex flex-wrap gap-3">
 		{#each socials as link (link.href)}
@@ -126,8 +134,8 @@
 				href={link.href}
 				color={link.color}
 				size="lg"
-				target="_blank"
-				rel="noreferrer"
+				target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+				rel={link.href.startsWith('mailto:') ? undefined : 'noreferrer'}
 				class="font-display uppercase"
 			>
 				{link.label}

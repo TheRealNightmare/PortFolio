@@ -126,7 +126,7 @@
 					<p class="mt-1 font-mono text-xs opacity-70">
 						{site.location} · built with SvelteKit &amp; neo-retro · © {new Date().getFullYear()}
 					</p>
-					<p class="mt-1 font-mono text-xs opacity-50">psst — try the Konami code.</p>
+					<p class="mt-1 font-mono text-xs opacity-50">psst... try the Konami code.</p>
 				</div>
 				<div class="flex flex-wrap gap-2">
 					{#each socials as link (link.href)}
@@ -134,8 +134,8 @@
 							href={link.href}
 							size="sm"
 							color={link.color}
-							target="_blank"
-							rel="noreferrer"
+							target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+							rel={link.href.startsWith('mailto:') ? undefined : 'noreferrer'}
 							class="font-mono text-xs tracking-wider uppercase"
 						>
 							{link.label}

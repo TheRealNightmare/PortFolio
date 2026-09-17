@@ -64,7 +64,7 @@ src/
 │   ├── resume/+page.svelte  ← experience, education, skills, contact
 │   └── +error.svelte        ← 404 page
 static/
-└── cv.pdf                 ← REPLACE THIS with your real CV
+└── Mirazul_Islam_CV.pdf  ← the CV served by the resume page
 ```
 
 ---
@@ -84,8 +84,8 @@ Everything personal lives in **`src/lib/config.ts`**. You should never need to e
 | `projectOverrides`         | Custom titles/descriptions/tags for repos                                |
 | `nav`                      | The header navigation links                                              |
 
-> Search the file for `TODO` — there are a few placeholders (your university, job dates,
-> descriptions for two repos) waiting for real content.
+> Everything in here is real content — there are no placeholders left. Edit `config.ts`
+> and every page that reads from it updates on the next build.
 
 ### Colors
 
@@ -319,8 +319,8 @@ variable to `22` in the Pages project settings.
 
 **`npm run build` fails on a link 404**
 The prerenderer is strict: a link to a file that doesn't exist fails the build. Most likely
-`static/cv.pdf` was deleted — put a PDF back, or remove the Download CV button in
-`src/routes/resume/+page.svelte`.
+`static/Mirazul_Islam_CV.pdf` was deleted or renamed. Put the file back, or update the
+`href` and `download` on the CV button in `src/routes/resume/+page.svelte` to match.
 
 ---
 

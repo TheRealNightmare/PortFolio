@@ -36,7 +36,7 @@ export const site = {
 	// Used for canonical URLs and OG tags. Change to your Cloudflare domain.
 	url: 'https://mirazulislamnahid.com',
 	description:
-		'Portfolio and blog of Mirazul Islam Nahid — software developer in Dhaka, Bangladesh, building web applications and teaching himself machine learning by rebuilding it from scratch.'
+		'Portfolio and blog of Mirazul Islam Nahid, a software developer in Dhaka, Bangladesh, building web applications and teaching himself machine learning by rebuilding it from scratch.'
 };
 
 /** Short lines under the hero name. Kept punchy on purpose. */
@@ -45,8 +45,8 @@ export const heroLines = ['Always exploring, always learning, building things as
 export const about = [
 	`I'm a developer in ${site.location}. Most of what I know came from building the thing
 	 badly first, then figuring out why it was bad. That's still the method.`,
-	`My work splits about evenly between full-stack web — Laravel, Vue, React, and lately
-	 SvelteKit — and Python. When something feels like magic, I rebuild it by hand until it
+	`My work splits about evenly between full-stack web (Laravel, Vue, React, and lately
+	 SvelteKit) and Python. When something feels like magic, I rebuild it by hand until it
 	 doesn't. That's how I ended up writing an autograd engine, and how I ended up training a
 	 sentiment model that has to cope with people typing Bengali and English in the same sentence.`,
 	`I'd rather ship something small that actually works than plan something large that doesn't.`
@@ -61,9 +61,8 @@ export type SocialLink = {
 export const socials: SocialLink[] = [
 	{ label: 'GitHub', href: 'https://github.com/TheRealNightmare', color: 'green' },
 	{ label: 'LinkedIn', href: 'https://linkedin.com/in/therealnightmare/', color: 'blue' },
-	{ label: 'X', href: 'https://x.com/nightMARE496', color: 'magenta' }
-	// TODO: add an email once you want one public, e.g.
-	// { label: 'Email', href: 'mailto:you@example.com', color: 'yellow' }
+	{ label: 'X', href: 'https://x.com/nightMARE496', color: 'magenta' },
+	{ label: 'Email', href: 'mailto:nnahid929@gmail.com', color: 'yellow' }
 ];
 
 export const skills: { group: string; items: string[]; color: PaletteColor }[] = [
@@ -97,14 +96,13 @@ export type TimelineEntry = {
 	color: PaletteColor;
 };
 
-// TODO: replace the placeholder dates/descriptions with your real history.
 export const experience: TimelineEntry[] = [
 	{
 		title: 'Software Developer',
 		org: 'Moner Bondhu',
-		period: 'Present',
+		period: 'Jun 2025 - Present',
 		description:
-			'Building and maintaining web products. TODO: replace with your actual responsibilities, stack and start date.',
+			'Building and maintaining the company web products end to end: Laravel and Vue on the product side, plus the surrounding Git, Docker and Linux work that keeps them shipping.',
 		color: 'green'
 	}
 ];
@@ -112,9 +110,10 @@ export const experience: TimelineEntry[] = [
 export const education: TimelineEntry[] = [
 	{
 		title: 'BSc in Computer Science & Engineering',
-		org: 'TODO: your university',
-		period: 'TODO: years',
-		description: 'TODO: coursework, focus areas, notable results.',
+		org: 'United International University',
+		period: '2023 - Present',
+		description:
+			'Currently in the 9th trimester. Coursework across systems, algorithms and software engineering; most of the machine-learning work (the autograd engine, the code-mixed sentiment model) grew up alongside it.',
 		color: 'blue'
 	}
 ];
@@ -155,7 +154,7 @@ export const projectOverrides: Record<string, ProjectOverride> = {
 	ScrollSense: {
 		title: 'ScrollSense',
 		blurb:
-			'Reads the mood of your social feed. A browser extension captures the posts you scroll past, a fine-tuned xlm-roberta-base scores each one — it handles Bengali-English code-mixed text, which is most of my timeline — and a dashboard turns months of scrolling into positivity-over-time charts, busiest-hour breakdowns and keyword clouds. One account and one JWT across the extension and the web app.',
+			'Reads the mood of your social feed. A browser extension captures the posts you scroll past, a fine-tuned xlm-roberta-base scores each one, and because it handles Bengali-English code-mixed text (which is most of my timeline) a dashboard turns months of scrolling into positivity-over-time charts, busiest-hour breakdowns and keyword clouds. One account and one JWT across the extension and the web app.',
 		highlights: ['PyTorch', 'Transformers', 'Browser extension', 'Dashboard'],
 		featured: true,
 		color: 'magenta'
@@ -163,7 +162,7 @@ export const projectOverrides: Record<string, ProjectOverride> = {
 	PlayerKoi: {
 		title: 'PlayerKoi',
 		blurb:
-			'A chess board that watches itself. An overhead camera on a Raspberry Pi 5 tracks a physical game and streams live algebraic notation to a built-in web UI. The trick: it never identifies piece *type*. A 3-class per-square classifier only reports empty/white/black, gated by a cheap motion detector and cross-checked against every legal move — so the software keeps piece identity and vision does the easy half.',
+			'A chess board that watches itself. An overhead camera on a Raspberry Pi 5 tracks a physical game and streams live algebraic notation to a built-in web UI. The trick: it never identifies piece *type*. A 3-class per-square classifier only reports empty/white/black, gated by a cheap motion detector and cross-checked against every legal move, so the software keeps piece identity and vision does the easy half.',
 		highlights: ['Raspberry Pi', 'Computer vision', 'python-chess', 'Real-time'],
 		featured: true,
 		color: 'cyan'
@@ -178,14 +177,14 @@ export const projectOverrides: Record<string, ProjectOverride> = {
 	RayTracing: {
 		title: 'Ray Tracing',
 		blurb:
-			'A 2D light-and-shadow simulation in C with SDL2. A glowing circle casts 500 rays in every direction; a second circle drifts up and down and blocks the ones that hit it, carving out a moving shadow you can drag around with the mouse. No renderer, no GPU — every pixel is written straight into the window surface, and the circle test compares squared distances so it never calls sqrt.',
+			'A 2D light-and-shadow simulation in C with SDL2. A glowing circle casts 500 rays in every direction; a second circle drifts up and down and blocks the ones that hit it, carving out a moving shadow you can drag around with the mouse. No renderer, no GPU: every pixel is written straight into the window surface, and the circle test compares squared distances so it never calls sqrt.',
 		highlights: ['C', 'SDL2', 'Software rendering', 'Geometry'],
 		color: 'green'
 	},
 	micrograd: {
 		title: 'micrograd',
 		blurb:
-			"Working through Karpathy's backprop video by hand — typing every line, re-deriving the math in the margins, and refusing to move on until a cell actually made sense. Learning in public, mess included.",
+			"Working through Karpathy's backprop video by hand, typing every line, re-deriving the math in the margins, and refusing to move on until a cell actually made sense. Learning in public, mess included.",
 		highlights: ['Autograd', 'Backprop', 'Jupyter'],
 		color: 'yellow'
 	},

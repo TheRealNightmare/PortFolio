@@ -1,30 +1,39 @@
 [
 	{
-		"name": "TheRealNightmare",
-		"description": null,
-		"language": "Python",
+		"name": "PortFolio",
+		"description": "Personal portfolio and blog for me  a fully static SvelteKit site deployed to Cloudflare Pages.",
+		"language": "CSS",
 		"stargazers_count": 0,
-		"html_url": "https://github.com/TheRealNightmare/TheRealNightmare",
-		"homepage": null,
-		"pushed_at": "2026-09-12T11:33:54Z"
+		"html_url": "https://github.com/TheRealNightmare/PortFolio",
+		"homepage": "https://mirazulislamnahid.com",
+		"pushed_at": "2026-09-15T12:13:27Z"
 	},
 	{
 		"name": "PlayerKoi",
-		"description": null,
+		"description": "Raspberry Pi chess robot. An overhead camera reads each square as empty/white/black only  piece identity comes from delta-matching against legal moves and a CoreXY magnet gantry replies.",
 		"language": "Python",
 		"stargazers_count": 0,
 		"html_url": "https://github.com/TheRealNightmare/PlayerKoi",
-		"homepage": null,
-		"pushed_at": "2026-09-11T11:08:45Z"
+		"homepage": "",
+		"pushed_at": "2026-09-14T21:54:56Z"
 	},
 	{
-		"name": "Portfolio",
-		"description": "my portfolio",
-		"language": "TypeScript",
+		"name": "TheRealNightmare",
+		"description": "My GitHub profile README  a neo-retro dark layout built from custom SVG banners generated with Python.",
+		"language": "Python",
 		"stargazers_count": 0,
-		"html_url": "https://github.com/TheRealNightmare/Portfolio",
-		"homepage": null,
-		"pushed_at": "2026-09-10T05:18:56Z"
+		"html_url": "https://github.com/TheRealNightmare/TheRealNightmare",
+		"homepage": "https://github.com/TheRealNightmare",
+		"pushed_at": "2026-09-14T10:05:24Z"
+	},
+	{
+		"name": "RayTracing",
+		"description": "A 2D light-and-shadow simulation in C with SDL2 a draggable light source casts 500 ray-marched rays that a bouncing circle blocks to carve out a moving shadow.",
+		"language": "C",
+		"stargazers_count": 0,
+		"html_url": "https://github.com/TheRealNightmare/RayTracing",
+		"homepage": "",
+		"pushed_at": "2026-09-14T09:52:23Z"
 	},
 	{
 		"name": "micrograd",
@@ -32,25 +41,25 @@
 		"language": "Jupyter Notebook",
 		"stargazers_count": 0,
 		"html_url": "https://github.com/TheRealNightmare/micrograd",
-		"homepage": null,
+		"homepage": "",
 		"pushed_at": "2026-08-14T11:17:34Z"
 	},
 	{
 		"name": "ScrollSense",
-		"description": null,
+		"description": "Sentiment analytics for your social feed a Chrome extension scrapes Facebook posts, a fine-tuned XLM-RoBERTa model scores them positive/negative, and a React dashboard visualizes your scroll mood over time.",
 		"language": "JavaScript",
 		"stargazers_count": 2,
 		"html_url": "https://github.com/TheRealNightmare/ScrollSense",
-		"homepage": null,
+		"homepage": "",
 		"pushed_at": "2026-06-16T15:37:28Z"
 	},
 	{
 		"name": "Verso2.0",
-		"description": "Verso is a comprehensive book management and social platform that allows users to discover books, manage personal libraries, and engage with a reading community.",
+		"description": "Full-stack online library and social reading platform read EPUB/PDF in the browser, highlight and annotate, listen with a TTS narrator, read together in real-time collaborative rooms, and get Gemini-powered recommendations. React 19 + Laravel 13 + Filament admin.",
 		"language": "PHP",
 		"stargazers_count": 2,
 		"html_url": "https://github.com/TheRealNightmare/Verso2.0",
-		"homepage": null,
+		"homepage": "",
 		"pushed_at": "2026-06-12T19:20:37Z"
 	},
 	{
@@ -61,15 +70,6 @@
 		"html_url": "https://github.com/TheRealNightmare/ChessBot-V1",
 		"homepage": null,
 		"pushed_at": "2026-04-19T16:06:44Z"
-	},
-	{
-		"name": "RayTracing",
-		"description": "A small 2D light-and-shadow simulation written in C with SDL2. A glowing circle emits rays in every direction; a second circle drifts up and down across the scene and blocks the rays that hit it, carving out a moving shadow. Drag with the mouse to move the light source around.",
-		"language": "C",
-		"stargazers_count": 0,
-		"html_url": "https://github.com/TheRealNightmare/RayTracing",
-		"homepage": null,
-		"pushed_at": "2026-09-14T09:52:23Z"
 	},
 	{
 		"name": "WebProject",
@@ -108,15 +108,6 @@
 		"pushed_at": "2026-01-02T13:41:18Z"
 	},
 	{
-		"name": "TestCI-CD",
-		"description": null,
-		"language": null,
-		"stargazers_count": 0,
-		"html_url": "https://github.com/TheRealNightmare/TestCI-CD",
-		"homepage": null,
-		"pushed_at": "2025-11-13T11:46:06Z"
-	},
-	{
 		"name": "Laravel-Microservice",
 		"description": "made this project to understand the microservice architecture",
 		"language": "Blade",
@@ -133,15 +124,6 @@
 		"html_url": "https://github.com/TheRealNightmare/TwT",
 		"homepage": null,
 		"pushed_at": "2025-09-22T10:31:59Z"
-	},
-	{
-		"name": "smallProjects",
-		"description": null,
-		"language": "C",
-		"stargazers_count": 0,
-		"html_url": "https://github.com/TheRealNightmare/smallProjects",
-		"homepage": null,
-		"pushed_at": "2025-01-03T10:53:34Z"
 	},
 	{
 		"name": "Intro-to-machine-learning-with-python",

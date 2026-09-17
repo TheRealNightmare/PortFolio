@@ -21,7 +21,7 @@
 	<title>Work · {site.name}</title>
 	<meta
 		name="description"
-		content="Projects by {site.name} — computer vision on a Raspberry Pi, a fine-tuned sentiment model, and a couple of full-stack reading platforms."
+		content="Projects by {site.name}: computer vision on a Raspberry Pi, a fine-tuned sentiment model, and a couple of full-stack reading platforms."
 	/>
 </svelte:head>
 

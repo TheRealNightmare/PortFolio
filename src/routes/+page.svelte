@@ -120,7 +120,7 @@
 <!-- SELECTED WORK -->
 <Band>
 	<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-		<SectionTitle kicker="01 — selected">Things I built</SectionTitle>
+		<SectionTitle kicker="01 / selected">Things I built</SectionTitle>
 		<Button href={resolve('/projects')} color="white" class="font-mono text-xs uppercase">
 			All of them<ArrowRightIcon />
 		</Button>
@@ -154,7 +154,7 @@
 <Band color="yellow">
 	<div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-start">
 		<div>
-			<SectionTitle kicker="02 — the person">Hello, I'm Nahid</SectionTitle>
+			<SectionTitle kicker="02 / the person">Hello, I'm Nahid</SectionTitle>
 			<div class="mt-6 max-w-2xl space-y-4 text-base leading-relaxed">
 				{#each about as paragraph, i (i)}
 					<p>{paragraph}</p>
@@ -171,7 +171,7 @@
 
 <!-- SKILLS -->
 <Band>
-	<SectionTitle kicker="03 — the toolbox">Currently obsessed with</SectionTitle>
+	<SectionTitle kicker="03 / the toolbox">Currently obsessed with</SectionTitle>
 	<div class="sticker-grid mt-8 grid gap-6 sm:grid-cols-2">
 		{#each skills as group (group.group)}
 			<Card.Root color={group.color} class="sticker">
@@ -194,7 +194,7 @@
 {#if data.posts.length}
 	<Band color="magenta">
 		<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-			<SectionTitle kicker="04 — the notebook">Lately I wrote</SectionTitle>
+			<SectionTitle kicker="04 / the notebook">Lately I wrote</SectionTitle>
 			<Button href={resolve('/blog')} color="white" class="font-mono text-xs uppercase">
 				Every post<ArrowRightIcon />
 			</Button>
@@ -224,10 +224,10 @@
 
 <!-- CONTACT -->
 <Band color="green" edge={false} size="lg">
-	<SectionTitle kicker="05 — say hi">Let's build something</SectionTitle>
+	<SectionTitle kicker="05 / say hi">Let's build something</SectionTitle>
 	<p class="mt-4 max-w-xl text-base font-bold">
-		If you wanna build something together, just knock me up — no contact form, no autoresponder.
-		Pick whichever of these you already have open and say hi.
+		If you wanna build something together, just knock me up. No contact form, no autoresponder. Pick
+		whichever of these you already have open and say hi.
 	</p>
 	<div class="mt-8 flex flex-wrap gap-3">
 		{#each socials as link (link.href)}
@@ -235,8 +235,8 @@
 				href={link.href}
 				color={link.color}
 				size="lg"
-				target="_blank"
-				rel="noreferrer"
+				target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+				rel={link.href.startsWith('mailto:') ? undefined : 'noreferrer'}
 				class="font-display uppercase"
 			>
 				{link.label}
