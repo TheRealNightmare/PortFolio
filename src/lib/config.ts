@@ -33,10 +33,14 @@ export const site = {
 	company: 'Moner Bondhu',
 	companyUrl: 'https://github.com/Moner-Bondhu',
 	avatar: 'https://avatars.githubusercontent.com/u/84902415?v=4',
-	// Used for canonical URLs and OG tags. Change to your Cloudflare domain.
+	/** Production origin, no trailing slash. Canonical URLs, OG tags and the sitemap build on it. */
 	url: 'https://mirazulislamnahid.com',
+	/** Default share image, under `static/`. Regenerate with `npm run images`. */
+	ogImage: '/og.png',
+	twitter: '@nightMARE496',
+	/** Meta description for the home page. Keep it under 160 characters. */
 	description:
-		'Portfolio and blog of Mirazul Islam Nahid, a software developer in Dhaka, Bangladesh, building web applications and teaching himself machine learning by rebuilding it from scratch.'
+		'Mirazul Islam Nahid is a software developer in Dhaka, Bangladesh, building full-stack web apps and learning machine learning by rebuilding it from scratch.'
 };
 
 /** Short lines under the hero name. Kept punchy on purpose. */
@@ -144,6 +148,8 @@ export type ProjectOverride = {
 	/** Flagship projects get a double-width card. */
 	featured?: boolean;
 	color?: PaletteColor;
+	/** Slug of a blog post about this project; the card links to it. */
+	post?: string;
 };
 
 /**
@@ -157,7 +163,8 @@ export const projectOverrides: Record<string, ProjectOverride> = {
 			'Reads the mood of your social feed. A browser extension captures the posts you scroll past, a fine-tuned xlm-roberta-base scores each one, and because it handles Bengali-English code-mixed text (which is most of my timeline) a dashboard turns months of scrolling into positivity-over-time charts, busiest-hour breakdowns and keyword clouds. One account and one JWT across the extension and the web app.',
 		highlights: ['PyTorch', 'Transformers', 'Browser extension', 'Dashboard'],
 		featured: true,
-		color: 'magenta'
+		color: 'magenta',
+		post: 'scrollsense-reading-your-feeds-mood'
 	},
 	PlayerKoi: {
 		title: 'PlayerKoi',
@@ -201,5 +208,5 @@ export const nav: { label: string; href: string; color: PaletteColor }[] = [
 	{ label: 'Home', href: '/', color: 'green' },
 	{ label: 'Work', href: '/projects', color: 'yellow' },
 	{ label: 'Blog', href: '/blog', color: 'magenta' },
-	{ label: 'About', href: '/resume', color: 'cyan' }
+	{ label: 'Resume', href: '/resume', color: 'cyan' }
 ];

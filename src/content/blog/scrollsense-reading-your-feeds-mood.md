@@ -1,5 +1,7 @@
 ---
 title: ScrollSense Scoring the Mood of Your Facebook Feed Without Getting Banned
+seoTitle: 'ScrollSense: Scoring Facebook Feed Mood with XLM-RoBERTa'
+seoDescription: A Chrome extension that scores every Facebook post you scroll past with a fine-tuned XLM-RoBERTa, built for code-mixed Bengali-English text.
 date: 2026-09-15
 summary: Our AI lab project a Chrome extension that scores every post you scroll past with a fine-tuned XLM-RoBERTa model. Soft scraping, code-mixed Bengali, and a class imbalance that almost fooled us.
 cover: /blog-scrollsense.webp
@@ -231,4 +233,5 @@ time. It just meant we had to give up on collecting a huge pile of data quickly,
 a fair trade.
 
 Code is at [github.com/TheRealNightmare/ScrollSense](https://github.com/TheRealNightmare/ScrollSense).
-Built with Fairoze Fatema Alam and Rumman Karim.
+Built with Fairoze Fatema Alam and Rumman Karim. The rest of what I've been building is on the
+[projects page](/projects).

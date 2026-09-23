@@ -1,11 +1,15 @@
 <script lang="ts">
 	import ExternalLinkIcon from '@lucide/svelte/icons/external-link';
+	import FileTextIcon from '@lucide/svelte/icons/file-text';
 	import GithubIcon from '@lucide/svelte/icons/github';
 	import StarIcon from '@lucide/svelte/icons/star';
 
+	import { resolve } from '$app/paths';
 	import { site } from '$lib/config';
+	import { absoluteUrl, graph, personJsonLd } from '$lib/seo';
 	import Band from '$lib/components/site/band.svelte';
 	import SectionTitle from '$lib/components/site/section-title.svelte';
+	import Seo from '$lib/components/site/seo.svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
@@ -17,13 +21,34 @@
 	let totalStars = $derived(data.projects.reduce((sum, p) => sum + p.stars, 0));
 </script>
 
-<svelte:head>
-	<title>Work · {site.name}</title>
-	<meta
-		name="description"
-		content="Projects by {site.name}: computer vision on a Raspberry Pi, a fine-tuned sentiment model, and a couple of full-stack reading platforms."
-	/>
-</svelte:head>
+<Seo
+	title="Projects"
+	description="Projects by {site.name}: a Raspberry Pi chess vision system, a Bengali-English sentiment model, a full-stack digital library and more."
+	path="/projects"
+	jsonLd={graph(
+		{
+			'@type': 'CollectionPage',
+			name: `Projects · ${site.name}`,
+			url: absoluteUrl('/projects'),
+			mainEntity: {
+				'@type': 'ItemList',
+				itemListElement: data.projects.map((project, i) => ({
+					'@type': 'ListItem',
+					position: i + 1,
+					item: {
+						'@type': 'SoftwareSourceCode',
+						name: project.title,
+						description: project.description,
+						codeRepository: project.url,
+						...(project.language && { programmingLanguage: project.language }),
+						author: { '@id': personJsonLd()['@id'] }
+					}
+				}))
+			}
+		},
+		personJsonLd()
+	)}
+/>
 
 <Band color="yellow">
 	<SectionTitle kicker="the work" level={1}>Things I built</SectionTitle>
@@ -63,7 +88,7 @@
 								? 'text-3xl sm:text-4xl'
 								: 'text-2xl'}"
 						>
-							{project.title}
+							<h2 class="heading-inherit">{project.title}</h2>
 						</Card.Title>
 						{#if project.featured}
 							<Badge color="white" class="font-mono text-[0.65rem] uppercase">Flagship</Badge>
@@ -86,7 +111,7 @@
 					{/each}
 				</Card.Content>
 
-				<Card.Footer class="mt-auto gap-2">
+				<Card.Footer class="mt-auto flex-wrap gap-2">
 					<Button
 						href={project.url}
 						size="sm"
@@ -107,6 +132,16 @@
 							class="font-mono text-xs uppercase"
 						>
 							<ExternalLinkIcon />Live
+						</Button>
+					{/if}
+					{#if project.post}
+						<Button
+							href={resolve(`/blog/[slug]`, { slug: project.post })}
+							size="sm"
+							color="white"
+							class="font-mono text-xs uppercase"
+						>
+							<FileTextIcon />Read the write-up
 						</Button>
 					{/if}
 				</Card.Footer>

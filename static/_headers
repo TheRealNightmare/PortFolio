@@ -7,3 +7,12 @@
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# The *.pages.dev hosts serve a copy of the site. Keep them out of search results so
+# Google only indexes the real domain (every page's canonical points there too).
+https://mirazulislamnahid.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:branch.mirazulislamnahid.pages.dev/*
+  X-Robots-Tag: noindex

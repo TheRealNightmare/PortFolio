@@ -3,9 +3,18 @@
  * Registry files under src/lib/components/ui/ stay untouched — everything here
  * either sets a token the system leaves undefined (fonts) or adds a decoration
  * built from tokens the system already owns (borders, shadows, palette colors).
+ *
+ * This file is NOT compiled by Tailwind: the registry's tailwind.css is the only
+ * Tailwind root, and a second root would duplicate the whole theme bundle. So only
+ * plain CSS works here — `@theme`, `@utility` and `@apply` are silently shipped
+ * to the browser as-is and do nothing.
  */
 
-@theme {
+/*
+ * Fonts. Unlayered, so these beat the registry's layered theme variables; Tailwind's
+ * own `font-sans` / `font-mono` utilities and preflight read the same variables.
+ */
+:root {
 	--font-display: 'Archivo Black', 'Arial Black', system-ui, sans-serif;
 	--font-sans: 'Space Grotesk Variable', system-ui, -apple-system, sans-serif;
 	--font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
@@ -24,6 +33,8 @@
 	h6 {
 		font-family: var(--font-display);
 		letter-spacing: -0.03em;
+		/* Archivo Black ships one heavy weight; don't let `font-black` fake-bold it further. */
+		font-synthesis-weight: none;
 	}
 
 	code,
@@ -38,13 +49,24 @@
  * Sticker cards: the fix for "uniform grid of boxes". Cards sit at small
  * alternating angles and snap straight with a deeper shadow on hover/focus.
  */
-@utility sticker {
-	transition:
-		transform 150ms ease-out,
-		box-shadow 150ms ease-out;
-}
-
 @layer components {
+	.sticker {
+		transition:
+			transform 150ms ease-out,
+			box-shadow 150ms ease-out;
+	}
+
+	/*
+	 * A real <h2>/<h3> inside Card.Title, for the page outline, without the
+	 * registry's heading sizes and margins: it looks exactly like the title around it.
+	 */
+	.heading-inherit {
+		margin: 0;
+		font: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+	}
+
 	.sticker-grid > *:nth-child(odd) .sticker,
 	.sticker-grid > .sticker:nth-child(odd) {
 		transform: rotate(-1.25deg);
@@ -87,6 +109,14 @@
 @media (prefers-reduced-motion: reduce) {
 	.sticker {
 		transition: none;
+	}
+}
+
+/* The registry has no display-font utility, so it's defined here. */
+@layer utilities {
+	.font-display {
+		font-family: var(--font-display);
+		font-synthesis-weight: none;
 	}
 }
 

@@ -1,6 +1,10 @@
 export type PostMeta = {
 	slug: string;
 	title: string;
+	/** Shorter title for search results and link previews (aim for 60 characters or fewer). */
+	seoTitle?: string;
+	/** Meta description when `summary` runs past the ~160 characters Google shows. */
+	seoDescription?: string;
 	date: string;
 	summary: string;
 	tags: string[];
@@ -11,7 +15,10 @@ export type PostMeta = {
 	coverAlt?: string;
 };
 
-export type Post = PostMeta & { html: string };
+export type Post = PostMeta & {
+	html: string;
+	coverSize: { width: number; height: number } | null;
+};
 
 /** Raw markdown files, resolved at build time by Vite. */
 const files = import.meta.glob('/src/content/blog/*.md', {
@@ -75,6 +82,8 @@ function toMeta(path: string, raw: string): { meta: PostMeta; body: string } {
 		meta: {
 			slug,
 			title: str(data.title, slug),
+			seoTitle: str(data.seoTitle) || undefined,
+			seoDescription: str(data.seoDescription) || undefined,
 			date: str(data.date, '1970-01-01'),
 			summary: str(data.summary),
 			tags: Array.isArray(data.tags) ? data.tags : [],

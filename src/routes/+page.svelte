@@ -8,9 +8,11 @@
 	import Band from '$lib/components/site/band.svelte';
 	import HeroArt from '$lib/components/site/hero-art.svelte';
 	import SectionTitle from '$lib/components/site/section-title.svelte';
+	import Seo from '$lib/components/site/seo.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import { graph, personJsonLd, websiteJsonLd } from '$lib/seo';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -53,10 +55,13 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{site.name} · {site.role}</title>
-	<meta name="description" content={site.description} />
-</svelte:head>
+<Seo
+	title="{site.name} · {site.role} in Dhaka"
+	fullTitle
+	description={site.description}
+	path="/"
+	jsonLd={graph(websiteJsonLd(), personJsonLd())}
+/>
 
 <!-- HERO -->
 <Band color="blue" size="lg">
@@ -134,7 +139,7 @@
 			>
 				<Card.Header>
 					<Card.Title class="font-display text-2xl tracking-tight uppercase">
-						{project.title}
+						<h3 class="heading-inherit">{project.title}</h3>
 					</Card.Title>
 					<Card.Description class="text-sm leading-relaxed">
 						{project.description}
@@ -177,7 +182,7 @@
 			<Card.Root color={group.color} class="sticker">
 				<Card.Header>
 					<Card.Title class="font-display text-xl tracking-tight uppercase">
-						{group.group}
+						<h3 class="heading-inherit">{group.group}</h3>
 					</Card.Title>
 				</Card.Header>
 				<Card.Content class="flex flex-wrap gap-2">
@@ -205,13 +210,15 @@
 				<Card.Root color="white" class="sticker">
 					<Card.Header>
 						<Card.Title class="font-display text-xl tracking-tight uppercase">
-							<a class="neoretro-link" href={resolve(`/blog/[slug]`, { slug: post.slug })}>
-								{post.title}
-							</a>
+							<h3 class="heading-inherit">
+								<a class="neoretro-link" href={resolve(`/blog/[slug]`, { slug: post.slug })}>
+									{post.title}
+								</a>
+							</h3>
 						</Card.Title>
 						<Card.Description>{post.summary}</Card.Description>
 					</Card.Header>
-					<Card.Footer class="gap-2 font-mono text-xs uppercase opacity-70">
+					<Card.Footer class="gap-2 font-mono text-xs uppercase">
 						<time datetime={post.date}>{post.date}</time>
 						<span>·</span>
 						<span>{post.readingTime} min</span>

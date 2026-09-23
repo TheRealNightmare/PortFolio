@@ -5,8 +5,10 @@
 	import { resolve } from '$app/paths';
 	import { site } from '$lib/config';
 	import Band from '$lib/components/site/band.svelte';
+	import Seo from '$lib/components/site/seo.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
+	import { absoluteUrl, graph, personJsonLd } from '$lib/seo';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -17,21 +19,44 @@
 			? data.post.date
 			: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 	});
+
+	let postUrl = $derived(absoluteUrl(`/blog/${data.post.slug}`));
+	let coverAlt = $derived(data.post.coverAlt ?? data.post.title);
 </script>
 
-<svelte:head>
-	<title>{data.post.title} · {site.name}</title>
-	<meta name="description" content={data.post.summary} />
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content={data.post.title} />
-	<meta property="og:description" content={data.post.summary} />
-	<meta property="og:url" content="{site.url}/blog/{data.post.slug}" />
-	{#if data.post.cover}
-		<meta property="og:image" content="{site.url}{data.post.cover}" />
-	{/if}
-	<meta name="twitter:card" content={data.post.cover ? 'summary_large_image' : 'summary'} />
-	<link rel="canonical" href="{site.url}/blog/{data.post.slug}" />
-</svelte:head>
+<Seo
+	title={data.post.seoTitle ?? data.post.title}
+	fullTitle
+	description={data.post.seoDescription ?? data.post.summary}
+	path="/blog/{data.post.slug}"
+	type="article"
+	image={data.post.cover
+		? { src: data.post.cover, alt: coverAlt, ...data.post.coverSize }
+		: undefined}
+	jsonLd={graph(
+		{
+			'@type': 'BlogPosting',
+			headline: data.post.seoTitle ?? data.post.title,
+			name: data.post.title,
+			description: data.post.summary,
+			datePublished: data.post.date,
+			url: postUrl,
+			mainEntityOfPage: postUrl,
+			keywords: data.post.tags.join(', '),
+			inLanguage: 'en',
+			...(data.post.cover && { image: absoluteUrl(data.post.cover) }),
+			author: personJsonLd()
+		},
+		{
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+				{ '@type': 'ListItem', position: 2, name: 'Blog', item: absoluteUrl('/blog') },
+				{ '@type': 'ListItem', position: 3, name: data.post.title, item: postUrl }
+			]
+		}
+	)}
+/>
 
 <article>
 	<Band color="magenta">
@@ -54,7 +79,7 @@
 
 		<div class="mt-5 flex flex-wrap items-center gap-2 font-mono text-xs uppercase">
 			<time datetime={data.post.date}>{formattedDate}</time>
-			<span class="opacity-70">· {data.post.readingTime} min read</span>
+			<span>· {data.post.readingTime} min read</span>
 			{#each data.post.tags as tag (tag)}
 				<Badge color="white" class="font-mono text-[0.65rem]">#{tag}</Badge>
 			{/each}
@@ -68,10 +93,11 @@
 		{#if data.post.cover}
 			<img
 				src={data.post.cover}
-				alt={data.post.coverAlt ?? data.post.title}
-				class="mb-8 w-full border-2 border-border shadow-shadow"
-				width="1600"
-				height="873"
+				alt={coverAlt}
+				class="mb-8 h-auto w-full border-2 border-border shadow-shadow"
+				width={data.post.coverSize?.width}
+				height={data.post.coverSize?.height}
+				fetchpriority="high"
 			/>
 		{/if}
 		<!-- Rendered from your own markdown at build time. -->
@@ -103,6 +129,12 @@
 			</Button>
 		{/if}
 	</nav>
+	<p class="mt-6 text-center font-mono text-sm">
+		Liked this? See <a class="font-bold neoretro-link" href={resolve('/projects')}
+			>what I've built</a
+		>
+		or <a class="font-bold neoretro-link" href={resolve('/resume')}>who wrote it</a>.
+	</p>
 </Band>
 
 <style>
@@ -145,6 +177,8 @@
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
 		text-underline-offset: 2px;
+		/* Long bare URLs would otherwise push the page sideways on narrow phones. */
+		overflow-wrap: anywhere;
 	}
 
 	.post-body :global(blockquote) {

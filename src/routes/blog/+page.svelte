@@ -5,11 +5,13 @@
 	import { site } from '$lib/config';
 	import Band from '$lib/components/site/band.svelte';
 	import SectionTitle from '$lib/components/site/section-title.svelte';
+	import Seo from '$lib/components/site/seo.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as InputGroup from '$lib/components/ui/input-group';
 	import * as Pagination from '$lib/components/ui/pagination';
+	import { absoluteUrl, graph, personJsonLd } from '$lib/seo';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -52,6 +54,11 @@
 		activeTag = null;
 	}
 
+	/** `/blog-x.webp` → `/blog-x-800.webp`, the smaller copy made by `npm run images`. */
+	function coverVariant(src: string): string {
+		return src.replace(/\.webp$/, '-800.webp');
+	}
+
 	function formatDate(iso: string): string {
 		const d = new Date(iso);
 		return Number.isNaN(d.getTime())
@@ -60,13 +67,24 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Blog · {site.name}</title>
-	<meta
-		name="description"
-		content="Writing by {site.name} on web development, machine learning, and rebuilding things until they make sense."
-	/>
-</svelte:head>
+<Seo
+	title="Blog"
+	description="Writing by {site.name} on web development, DevOps and machine learning, from CI/CD pipelines to sentiment models, rebuilt until they make sense."
+	path="/blog"
+	jsonLd={graph({
+		'@type': 'Blog',
+		name: `Blog · ${site.name}`,
+		url: absoluteUrl('/blog'),
+		author: personJsonLd(),
+		blogPost: data.posts.map((post) => ({
+			'@type': 'BlogPosting',
+			headline: post.title,
+			url: absoluteUrl(`/blog/${post.slug}`),
+			datePublished: post.date,
+			description: post.summary
+		}))
+	})}
+/>
 
 <Band color="magenta">
 	<SectionTitle kicker="the notebook" level={1}>Things I wrote</SectionTitle>
@@ -127,23 +145,30 @@
 						>
 							<img
 								src={post.cover}
-								alt=""
-								class="aspect-[16/9] w-full max-w-full object-cover"
-								loading="lazy"
+								srcset="{coverVariant(post.cover)} 800w, {post.cover} 1600w"
+								sizes="(min-width: 1024px) 930px, calc(100vw - 5rem)"
+								alt={post.coverAlt ?? post.title}
+								width="1600"
+								height="900"
+								class="aspect-video w-full max-w-full object-cover"
+								loading={i === 0 ? 'eager' : 'lazy'}
+								decoding="async"
 							/>
 						</a>
 					{/if}
 					<Card.Header>
 						<Card.Title class="font-display text-2xl tracking-tight uppercase">
-							<a class="neoretro-link" href={resolve(`/blog/[slug]`, { slug: post.slug })}>
-								{post.title}
-							</a>
+							<h2 class="heading-inherit">
+								<a class="neoretro-link" href={resolve(`/blog/[slug]`, { slug: post.slug })}>
+									{post.title}
+								</a>
+							</h2>
 						</Card.Title>
 						<Card.Description class="text-sm leading-relaxed">{post.summary}</Card.Description>
 					</Card.Header>
 					<Card.Footer class="flex-wrap gap-2 font-mono text-xs uppercase">
-						<time class="opacity-70" datetime={post.date}>{formatDate(post.date)}</time>
-						<span class="opacity-70">· {post.readingTime} min</span>
+						<time datetime={post.date}>{formatDate(post.date)}</time>
+						<span>· {post.readingTime} min</span>
 						{#each post.tags as tag (tag)}
 							<Badge color="white" class="font-mono text-[0.65rem]">#{tag}</Badge>
 						{/each}

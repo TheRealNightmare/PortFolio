@@ -26,7 +26,7 @@
 <!-- Wrapped so the kicker and heading stay one unit inside flex parents. -->
 <div>
 	{#if kicker}
-		<p class="mb-2 font-mono text-xs font-bold tracking-[0.25em] uppercase opacity-70">
+		<p class="mb-2 font-mono text-xs font-bold tracking-[0.25em] uppercase">
 			{kicker}
 		</p>
 	{/if}

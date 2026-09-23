@@ -5,9 +5,11 @@
 	import { about, education, experience, site, skills, socials } from '$lib/config';
 	import Band from '$lib/components/site/band.svelte';
 	import SectionTitle from '$lib/components/site/section-title.svelte';
+	import Seo from '$lib/components/site/seo.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import { absoluteUrl, graph, personJsonLd } from '$lib/seo';
 
 	const timeline = [
 		{ heading: 'Where I work', entries: experience },
@@ -15,10 +17,18 @@
 	];
 </script>
 
-<svelte:head>
-	<title>About · {site.name}</title>
-	<meta name="description" content="Experience, education and skills of {site.name}." />
-</svelte:head>
+<Seo
+	title="Resume"
+	description="Resume of {site.name}: {site.role.toLowerCase()} at {site.company}, studying CSE at {education[0]
+		.org}. Laravel, Vue, SvelteKit and PyTorch."
+	path="/resume"
+	jsonLd={graph({
+		'@type': 'ProfilePage',
+		url: absoluteUrl('/resume'),
+		name: `Resume · ${site.name}`,
+		mainEntity: personJsonLd()
+	})}
+/>
 
 <Band color="green">
 	<SectionTitle kicker="the résumé" level={1}>Who am I</SectionTitle>
@@ -81,7 +91,7 @@
 							<Card.Header>
 								<div class="flex flex-wrap items-baseline justify-between gap-2">
 									<Card.Title class="font-display text-xl tracking-tight uppercase">
-										{entry.title}
+										<h3 class="heading-inherit">{entry.title}</h3>
 									</Card.Title>
 									<Badge color="white" class="font-mono text-[0.65rem] uppercase">
 										{entry.period}
@@ -108,7 +118,7 @@
 			<Card.Root color={group.color} class="sticker">
 				<Card.Header>
 					<Card.Title class="font-display text-xl tracking-tight uppercase">
-						{group.group}
+						<h3 class="heading-inherit">{group.group}</h3>
 					</Card.Title>
 				</Card.Header>
 				<Card.Content class="flex flex-wrap gap-2">

@@ -43,6 +43,14 @@ Card grids get `class="sticker-grid"` on the container and `class="sticker"` on 
 the alternating tilt + hover pop. Full-width cards also need `sticker-flat` — a wide card at an
 angle swings past the content column.
 
+### `app.css` is plain CSS, not Tailwind
+
+The registry's `tailwind.css` is the only Tailwind root. `src/routes/app.css` is imported
+separately and never compiled, so `@theme`, `@utility` and `@apply` in it ship to the browser
+as dead text. This is why the design fonts silently never loaded until it was fixed. Put plain
+CSS there: custom properties on `:root`, and classes inside `@layer base/components/utilities`.
+Don't `@import` the registry file into it either; that compiles the 500 KB theme bundle twice.
+
 ## Theming: light only
 
 `src/lib/components/ui/style/themes.ts` and `favorite-themes.ts` are the **two registry files
@@ -50,6 +58,18 @@ this project intentionally modifies**. They filter the theme list to light theme
 `gruvbox-light` as the default. `npx shadcn-svelte add --overwrite` will clobber them — re-apply
 the change if that happens. Everything else under `src/lib/components/ui/` is untouched
 upstream code and is excluded from lint and format so it stays diffable.
+
+**Only the default theme ships.** `colors.css` defines all 586 themes (~540 KB). The
+`only-default-theme` plugin in `vite.config.ts` strips every theme except `FavoriteThemes[0]`
+from the compiled CSS (dev and build), so the stylesheet is ~84 KB instead of ~540 KB. The
+kept theme also applies to `:root` and any `[data-theme]`, so a stale saved theme or no-JS
+visitor still gets the default colors. Consequences:
+
+- Changing the default in `favorite-themes.ts` just works.
+- The registry `ThemePicker` would show themes that no longer exist. To add a theme switcher,
+  change the plugin to keep a list instead of one theme.
+- If a registry update restructures `colors.css`, the build fails loudly (it expects exactly
+  one default-theme block) rather than shipping an unstyled site.
 
 ## Content
 
@@ -65,6 +85,15 @@ All personal content lives in `src/lib/config.ts`. Blog posts are markdown in
   client bundle. The same applies to `Avatar.Fallback` (pulls in all of dicebear).
 - Motion is an enhancement, never a gate: the hero intro is applied after mount so the
   prerendered HTML is complete, and every animation is disabled under `prefers-reduced-motion`.
+
+## SEO
+
+Every page's `<head>` comes from `src/lib/components/site/seo.svelte`; don't hand-write
+`<title>`/meta/OG tags in a page. `sitemap.xml` and `robots.txt` are prerendered routes built from
+`site.url`, so they pick up new posts automatically. Keep titles ≤60 and descriptions ≤160
+characters (posts can override with `seoTitle`/`seoDescription` frontmatter). A heading inside a
+`Card.Title` needs `class="heading-inherit"` or it takes the registry's heading size. The
+Search Console setup and backlink plan are in `docs/SEO.md`.
 
 ## Before committing
 

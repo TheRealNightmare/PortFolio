@@ -4,6 +4,11 @@
 	import '@fontsource-variable/space-grotesk';
 	import '@fontsource-variable/jetbrains-mono';
 	import './app.css';
+	// The latin files the first screen needs. Preloaded so they download alongside the
+	// stylesheet instead of after it; Vite dedupes them with the @font-face URLs.
+	import archivoBlack from '@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2?url';
+	import spaceGrotesk from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+	import jetbrainsMono from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 
 	import MenuIcon from '@lucide/svelte/icons/menu';
 	import { resolve } from '$app/paths';
@@ -53,6 +58,9 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	{#each [archivoBlack, spaceGrotesk, jetbrainsMono] as font (font)}
+		<link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />
+	{/each}
 </svelte:head>
 
 <svelte:window onkeydown={onKeydown} />
@@ -126,7 +134,7 @@
 					<p class="mt-1 font-mono text-xs opacity-70">
 						{site.location} · built with SvelteKit &amp; neo-retro · © {new Date().getFullYear()}
 					</p>
-					<p class="mt-1 font-mono text-xs opacity-50">psst... try the Konami code.</p>
+					<p class="mt-1 font-mono text-xs opacity-75">psst... try the Konami code.</p>
 				</div>
 				<div class="flex flex-wrap gap-2">
 					{#each socials as link (link.href)}

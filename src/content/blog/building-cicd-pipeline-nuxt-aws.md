@@ -1,5 +1,6 @@
 ---
 title: From Localhost to Production Building a Robust CI/CD Pipeline for Nuxt.js on AWS EC2
+seoTitle: 'CI/CD for Nuxt.js on AWS EC2 with GitHub Actions'
 date: 2025-12-04
 summary: How I built a push-to-deploy pipeline for a Nuxt.js app with GitHub Actions, S3, CodeDeploy and EC2 and the two errors that cost me the most time.
 cover: /blog-cicd.webp

@@ -13,6 +13,8 @@ export type Project = {
 	highlights: string[];
 	featured: boolean;
 	color: PaletteColor;
+	/** Slug of a blog post about this project, if one exists. */
+	post: string | null;
 };
 
 type GhRepo = {
@@ -84,7 +86,8 @@ export async function loadProjects(
 				pushedAt: repo.pushed_at,
 				highlights: override.highlights ?? [],
 				featured: override.featured ?? false,
-				color: override.color ?? FALLBACK_COLORS[i % FALLBACK_COLORS.length]
+				color: override.color ?? FALLBACK_COLORS[i % FALLBACK_COLORS.length],
+				post: override.post ?? null
 			}
 		];
 	});
