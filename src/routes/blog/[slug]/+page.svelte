@@ -22,6 +22,20 @@
 
 	let postUrl = $derived(absoluteUrl(`/blog/${data.post.slug}`));
 	let coverAlt = $derived(data.post.coverAlt ?? data.post.title);
+
+	let body: HTMLDivElement | undefined = $state();
+
+	// Looping clips in a post are motion like any other animation: with reduced motion,
+	// stop them and give the visitor controls to play one on purpose.
+	$effect(() => {
+		void data.post.html;
+		if (!body || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		for (const video of body.querySelectorAll<HTMLVideoElement>('video[autoplay]')) {
+			video.pause();
+			video.autoplay = false;
+			video.controls = true;
+		}
+	});
 </script>
 
 <Seo
@@ -102,7 +116,7 @@
 		{/if}
 		<!-- Rendered from your own markdown at build time. -->
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-		<div class="post-body">{@html data.post.html}</div>
+		<div class="post-body" bind:this={body}>{@html data.post.html}</div>
 	</Band>
 </article>
 
@@ -191,10 +205,28 @@
 		font-weight: 700;
 	}
 
-	.post-body :global(img) {
+	.post-body :global(img),
+	.post-body :global(video) {
 		border: 2px solid var(--color-border);
 		box-shadow: var(--shadow-shadow);
 		max-width: 100%;
+	}
+
+	.post-body :global(video) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.post-body :global(figure) {
+		margin-block: 1.75rem;
+	}
+
+	.post-body :global(figcaption) {
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		opacity: 0.75;
 	}
 
 	.post-body :global(:not(pre) > code) {
